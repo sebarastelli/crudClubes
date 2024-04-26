@@ -1,15 +1,17 @@
 [
   {
-    "id": 57,
-    "name": "Arsenal FC",
-    "address": "75 Drayton Park London N5 1BU",
-    "area": "England"
+    "name": "Arsenal FC 22",
+    "crestUrl": "https://example.com/crestUrl",
+    "address": "25 de mayo",
+    "area": "Santa Fe",
+    "id": 57
   },
   {
-    "id": 58,
-    "name": "Aston Villa FC",
-    "address": "Villa Park Birmingham B6 6HE",
-    "area": "England"
+    "name": "Sebastián Rastelli",
+    "crestUrl": "https://i.pinimg.com/474x/45/6a/5c/456a5c774329b61b9829f04e13263149.jpg",
+    "address": "asdas",
+    "area": "Argentina",
+    "id": 58
   },
   {
     "id": 61,
@@ -34,12 +36,5 @@
     "crestUrl": "https://example.com/crestUrl",
     "address": "25 de mayo",
     "area": "Santa Fe"
-  },
-  {
-    "id": 9999,
-    "name": "Sebastián Rastelli",
-    "crestUrl": "https://i.pinimg.com/474x/45/6a/5c/456a5c774329b61b9829f04e13263149.jpg",
-    "address": "asdas",
-    "area": "Argentina"
   }
 ]

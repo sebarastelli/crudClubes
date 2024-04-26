@@ -44,5 +44,54 @@ async function obtenerEquiposIngleses(req, res) {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
+async function obtenerEquipoPorId(req, res) {
+  const equipoId = req.params.id; // Obtener el ID del equipo desde los parámetros de la solicitud
+  try {
+    // Primero, intenta buscar el equipo en la base de datos local
+    let equiposDB = [];
+    if (fs.existsSync('equipos.db.json')) {
+      const data = fs.readFileSync('equipos.db.json', 'utf-8');
+      equiposDB = JSON.parse(data);
+    }
 
-module.exports = { obtenerEquiposIngleses };
+    const equipoDB = equiposDB.find((equipo) => equipo.id == equipoId);
+
+    if (equipoDB) {
+      // Si el equipo está en la base de datos local, devuelve el equipo
+      res.json(equipoDB);
+    } else {
+      // Si el equipo no está en la base de datos local, intenta obtenerlo de la API
+      const response = await axios.get(`http://api.football-data.org/v2/teams/${equipoId}`, {
+        headers: {
+          'X-Auth-Token': API_KEY
+        }
+      });
+
+      const equipoAPI = response.data;
+      
+      equiposDB.push({
+        id: equipoAPI.id,
+        name: equipoAPI.name,
+        crestUrl: equipoAPI.crestUrl,
+        address: equipoAPI.address,
+        area: equipoAPI.area.name
+      });
+
+      fs.writeFileSync('equipos.db.json', JSON.stringify(equiposDB, null, 2));
+      console.log('Equipo añadido a equipos.db.json');
+      
+      res.json({
+        id: equipoAPI.id,
+        name: equipoAPI.name,
+        crestUrl: equipoAPI.crestUrl,
+        address: equipoAPI.address,
+        area: equipoAPI.area.name
+      });
+    }
+  } catch (error) {
+    console.error('Error al obtener el equipo:', error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+}
+
+module.exports = { obtenerEquiposIngleses, obtenerEquipoPorId };

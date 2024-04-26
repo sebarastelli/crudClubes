@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const botonMostrar = document.getElementById('formDisplay');
     const formulario = document.getElementById('form');
     const addClub = document.getElementById("addClub");
-    
 
     addClub.addEventListener("click", agregarEquipo);
 
@@ -15,7 +14,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
 async function agregarEquipo(event) {
+    event.preventDefault();
+    
+    try {
+        const teamName = document.getElementById("name");
+        const teamURL = document.getElementById("crestUrl");
+        const teamArea = document.getElementById("area");
+        const teamAddress = document.getElementById("address");
+        
+        const newClub = {
+            name: teamName.value,
+            crestUrl: teamURL.value,
+            area: teamArea.value,
+            address: teamAddress.value,
+        };
+
+        console.log(newClub);
+
+        const response = await fetch('http://localhost:3000/api/crearClub', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newClub)
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function verEquipo(id) {
+    try {
+        window.location.href = `team.html?id=${id}`;
+    } catch (error) {
+        console.error('Error al redireccionar:', error);
+    }
+}
+
+async function editarEquipo(event) {
     event.preventDefault();
     
     try {
@@ -59,8 +102,17 @@ async function obtenerEquipos() {
         boton.addEventListener('click', () => {
             const id = boton.getAttribute('data-id');
             eliminarEquipo(id);
-            console.log("hola")
+            console.log("eliminado")
+        });  
+    });
+    const botonesVer = document.querySelectorAll('.verEquipo');
+        botonesVer.forEach((boton) => {
+        boton.addEventListener('click', () => {
+            const id = boton.getAttribute('data-id');
+            verEquipo(id);
+            console.log("verEquipo")
         });
+        
     });
     } catch (error) {
         console.error('Error al obtener los equipos:', error);
@@ -76,11 +128,9 @@ function mostrarEquipos(equipos) {
             <img src="${equipo.crestUrl}" class="card-img-top" alt="${equipo.name} crest">
             <div class="card-body">
                 <h5 class="card-title">${equipo.name}</h5>
-                <p class="card-text"><strong>País:</strong> ${equipo.area}</p>
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-danger eliminarEquipo" data-id="${equipo.id}">Eliminar</button>
-                    <button class="btn btn-primary editar-equipo" data-id="${equipo.id}">Editar</button>
-                    <button class="btn btn-info ver-equipo" data-id="${equipo.id}">Ver</button>
+                    <button class="btn btn-info verEquipo"  data-id="${equipo.id}">Ver</button>
                 </div>
             </div>
         </div>

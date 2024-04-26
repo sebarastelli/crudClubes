@@ -19,21 +19,22 @@ async function editarClub(req, res) {
       id: club.id,
     };
 
-    const equipoExistente = equiposDB.find((e) => e.id === clubNuevo.id);
-
-    if (equipoExistente) {
-     equipoExistente = {
+    const indexEquipoExistente = equiposDB.findIndex((e) => e.id === parseInt(clubNuevo.id));
+    console.log(indexEquipoExistente);
+    if (indexEquipoExistente !== -1) {
+      equiposDB[indexEquipoExistente] = {
         name: clubNuevo.name,
         crestUrl: clubNuevo.crestUrl,
         address: clubNuevo.address,
         area: clubNuevo.area,
-        id: equipoExistente.id
-     }
+        id: equiposDB[indexEquipoExistente].id 
+      };
     }
+
     fs.writeFileSync("equipos.db.json", JSON.stringify(equiposDB, null, 2));
   } catch (error) {
     console.error("Error al obtener los equipos:", error);
   }
 }
 
-module.exports = {editarClub};
+module.exports = { editarClub };
