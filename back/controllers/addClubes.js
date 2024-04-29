@@ -11,29 +11,25 @@ async function crearClub(req, res) {
       equiposDB = JSON.parse(data);
     }
     
+    let randomId;
+    do {
+      randomId = Math.floor(Math.random() * 100000); 
+    } while (equiposDB.some(equipo => equipo.id === randomId)); 
+    
     const clubNuevo = {
       name: club.name,
       crestUrl: club.crestUrl,
       address: club.address,
       area: club.area, 
-      id: 9999, 
+      id: randomId, 
     };
     
-    const equipoExistente = equiposDB.find((e) => e.id === clubNuevo.id);
+    const equipoExistenteIndex = equiposDB.findIndex(e => e.id === clubNuevo.id);
     
-    if (equipoExistente) {
-      equipoExistente.name = clubNuevo.name;
-      equipoExistente.crestUrl = clubNuevo.crestUrl;
-      equipoExistente.address = clubNuevo.address;
-      equipoExistente.area = clubNuevo.area;
+    if (equipoExistenteIndex !== -1) {
+      equiposDB[equipoExistenteIndex] = clubNuevo; 
     } else {
-      equiposDB.push({
-        id: clubNuevo.id,
-        name: clubNuevo.name,
-        crestUrl: clubNuevo.crestUrl,
-        address: clubNuevo.address,
-        area: clubNuevo.area,  
-      });
+      equiposDB.push(clubNuevo); 
     }
     
     fs.writeFileSync('equipos.db.json', JSON.stringify(equiposDB, null, 2));
