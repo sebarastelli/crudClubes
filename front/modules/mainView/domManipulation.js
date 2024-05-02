@@ -1,7 +1,7 @@
 export function mostrarEquipos(equipos) {
-    const equiposContainer = document.getElementById('equiposContainer');
-    equipos.forEach((equipo) => {
-        const equipoCard = `
+  const equiposContainer = document.getElementById("equiposContainer");
+  equipos.forEach((equipo) => {
+    const equipoCard = `
         <div class="col-md-4 mb-4">
         <div data-id="${equipo.id}" class="card">
             <img src="${equipo.crestUrl}" class="card-img-top" alt="${equipo.name} crest">
@@ -15,15 +15,14 @@ export function mostrarEquipos(equipos) {
         </div>
     </div>
         `;
-       equiposContainer.innerHTML += equipoCard;
-    });
+    equiposContainer.innerHTML += equipoCard;
+  });
 }
 
 export async function verEquipo(id) {
-    try {
-        window.location.href = `team.html?id=${id}`;
-    } catch (error) {
-        console.error('Error al redireccionar:', error);
-    }
+  try {
+    window.location.href = `team.html?id=${id}`;
+  } catch (error) {
+    console.error("Error al redireccionar:", error);
+  }
 }
-

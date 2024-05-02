@@ -3,7 +3,7 @@ const fs = require("fs");
 async function editarClub(req, res) {
   try {
     const club = req.body;
-    console.log(req.body)
+    console.log(req.body);
     let equiposDB = [];
 
     if (fs.existsSync("equipos.db.json")) {
@@ -19,7 +19,9 @@ async function editarClub(req, res) {
       id: club.id,
     };
 
-    const indexEquipoExistente = equiposDB.findIndex((e) => e.id === parseInt(clubNuevo.id));
+    const indexEquipoExistente = equiposDB.findIndex(
+      (e) => e.id === parseInt(clubNuevo.id)
+    );
     console.log(indexEquipoExistente);
     if (indexEquipoExistente !== -1) {
       equiposDB[indexEquipoExistente] = {
@@ -27,7 +29,7 @@ async function editarClub(req, res) {
         crestUrl: clubNuevo.crestUrl,
         address: clubNuevo.address,
         area: clubNuevo.area,
-        id: equiposDB[indexEquipoExistente].id 
+        id: equiposDB[indexEquipoExistente].id,
       };
     }
 
