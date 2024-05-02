@@ -26,7 +26,7 @@ Esta es una aplicación web desarrollada utilizando Node.js y Express para el ba
 1. Inicia el servidor utilizando nodemon:
 
     ```bash
-nodemon main.js
+    nodemon main.js
     ```
 
 2. Utiliza Live Server de VS Code para ejecutar el frontend:
@@ -39,9 +39,9 @@ nodemon main.js
 
 La aplicación proporciona las siguientes funcionalidades:
 
--Crear Equipo: Permite crear un nuevo equipo de fútbol proporcionando su nombre, logo, dirección y país.
--Editar Equipo: Permite editar la información de un equipo existente, incluyendo su nombre, logo, dirección y país.
--Eliminar Equipo: Permite eliminar un equipo de fútbol de la lista.
+Crear Equipo: Permite crear un nuevo equipo de fútbol proporcionando su nombre, logo, dirección y país.
+Editar Equipo: Permite editar la información de un equipo existente, incluyendo su nombre, logo, dirección y país.
+Eliminar Equipo: Permite eliminar un equipo de fútbol de la lista.
 
 ## Tecnologías Utilizadas
 
