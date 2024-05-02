@@ -32,7 +32,9 @@ Esta es una aplicación web desarrollada utilizando Node.js y Express para el ba
 2. Utiliza Live Server de VS Code para ejecutar el frontend:
 
 -Abre el archivo HTML principal en Visual Studio Code.
+
 -Haz clic derecho en el archivo HTML y selecciona "Open with Live Server" para iniciar un servidor de desarrollo en vivo.
+
 -Abre tu navegador web y ve a http://localhost:3000 (o el puerto que hayas configurado) para acceder a la aplicación.
 
 ## Funcionalidades
@@ -40,7 +42,9 @@ Esta es una aplicación web desarrollada utilizando Node.js y Express para el ba
 La aplicación proporciona las siguientes funcionalidades:
 
 Crear Equipo: Permite crear un nuevo equipo de fútbol proporcionando su nombre, logo, dirección y país.
+
 Editar Equipo: Permite editar la información de un equipo existente, incluyendo su nombre, logo, dirección y país.
+
 Eliminar Equipo: Permite eliminar un equipo de fútbol de la lista.
 
 ## Tecnologías Utilizadas
