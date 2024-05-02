@@ -50,7 +50,11 @@ Eliminar Equipo: Permite eliminar un equipo de fútbol de la lista.
 ## Tecnologías Utilizadas
 
 Node.js: Entorno de ejecución para JavaScript.
+
 Express: Framework de aplicación web para Node.js.
+
 JavaScript: Lenguaje de programación para el frontend y algunas partes del backend.
+
 HTML: Lenguaje de marcado para la estructura de las páginas web.
+
 Bootstrap: Framework de CSS para el diseño y la interfaz de usuario.
